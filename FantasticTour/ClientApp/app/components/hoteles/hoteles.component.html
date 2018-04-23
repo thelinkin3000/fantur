@@ -1,0 +1,24 @@
+<h1>
+    Hoteles 
+</h1>
+
+<div class="list-group">
+    <div class="list-group-item">
+        <div class="row">
+            <div class="col-2"><strong>Id</strong></div>
+            <div class="col-4"><strong>Nombre</strong></div>
+            <div class="col-4"><strong>Direccion</strong></div>
+            <div class="col-2"><strong>Telefono</strong></div>
+
+        </div>
+    </div>
+    <a class="list-group-item list-group-item-action" [routerLink]="['/hotel-editor']" [queryParams]="{id : hotel.id}" *ngFor="let hotel of hoteles">
+        <div class="row">
+            <div class="col-2">{{hotel.id}}</div>
+            <div class="col-4">{{hotel.nombre}}</div>
+            <div class="col-4">{{hotel.direccion}}</div>
+            <div class="col-2">{{hotel.telefono}}</div>
+
+        </div>
+    </a>
+</div>

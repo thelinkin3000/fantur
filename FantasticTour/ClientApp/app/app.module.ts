@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { HotelesComponent } from './components/hoteles/hoteles.component';
+import { HotelEditorComponent } from './components/hotel-editor/hotel-editor.component';
 
 @NgModule({
     declarations: [
@@ -16,17 +19,21 @@ import { CounterComponent } from './components/counter/counter.component';
         NavMenuComponent,
         CounterComponent,
         FetchDataComponent,
-        HomeComponent
+        HomeComponent,
+        HotelesComponent,
+        HotelEditorComponent
     ],
     imports: [
         CommonModule,
-        HttpModule,
         FormsModule,
+        HttpClientModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'hoteles', component: HotelesComponent },
+            { path: 'hotel-editor', component: HotelEditorComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ]

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'fetchdata',
@@ -7,11 +7,24 @@ import { Http } from '@angular/http';
 })
 export class FetchDataComponent {
     public forecasts: WeatherForecast[];
+    public cacheForecasts: WeatherForecast[];
+    public summaries: any[];
 
-    constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
-        http.get(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
-            this.forecasts = result.json() as WeatherForecast[];
+    constructor(httpClient: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+        httpClient.get<WeatherForecast[]>(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
+            this.forecasts = result;
+            this.cacheForecasts = this.forecasts;
         }, error => console.error(error));
+        httpClient.get<any[]>(baseUrl + 'api/SampleData/GetSummaries').subscribe(result => {
+            this.summaries = result;
+        }, error => console.error(error));
+    }
+
+    filterForeCasts(filterVal: any) {
+        if (filterVal == "0")
+            this.forecasts = this.cacheForecasts;
+        else
+            this.forecasts = this.cacheForecasts.filter((item) => item.summary == filterVal);
     }
 }
 
@@ -20,4 +33,8 @@ interface WeatherForecast {
     temperatureC: number;
     temperatureF: number;
     summary: string;
+}
+
+interface Summary {
+    name: string;
 }
