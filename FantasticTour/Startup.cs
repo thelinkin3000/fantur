@@ -28,9 +28,7 @@ namespace FantasticTour
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
-            var connection = "Server=localhost;Database=fantur;User Id=postgres;Password=Ctrl2016;";
-            services.AddEntityFrameworkNpgsql().AddDbContext<DataContext>(options => options.UseNpgsql(connection));
-
+            services.AddEntityFrameworkNpgsql().AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("FanturDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
