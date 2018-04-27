@@ -45,6 +45,10 @@
     <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js" />
     <Exec Command="node node_modules/webpack/bin/webpack.js" />
   </Target>
+  
+  <Target Name="CopyCustomBootstrapFiles" AfterTargets="Build">
+	<Copy SourceFiles="CustomCss\bootstrap.theme.css" DestinationFolder="wwwroot\dist" />
+  </Target>
 
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
