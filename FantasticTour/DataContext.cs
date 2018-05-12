@@ -21,5 +21,6 @@ namespace FantasticTour
         public DbSet<Paquete> Paquetes { get; set; }
         public DbSet<Provincia> Provincias { get; set; }
         public DbSet<Vuelo> Vuelos{ get; set; }
+        public DbSet<PaqueteContratado> PaquetesContratados { get; set; }
     }
 }
