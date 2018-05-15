@@ -19,7 +19,7 @@ namespace FantasticTour.Controllers
         [Route("/api/Hoteles")]
         public IActionResult Hoteles()
         {
-            return new OkObjectResult(EntityFrameworkQueryableExtensions.Include<Hotel, Ciudad>(_context.Hoteles, h => h.Ciudad).ThenInclude(c => c.Provincia).ThenInclude(p => p.Pais));
+            return new OkObjectResult(_context.Hoteles.Include(h => h.Ciudad).ThenInclude(c => c.Provincia).ThenInclude(p => p.Pais));
         }
 
         [Route("/api/Hoteles/{id}")]

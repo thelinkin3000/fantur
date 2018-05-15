@@ -2,8 +2,11 @@
 
 <div class="card">
     <div class="card-header">
-        <h1>
+        <h1 *ngIf="hotel.id">
             Editando hotel {{hotel.id}}
+        </h1>
+        <h1 *ngIf="!hotel.id">
+            Nuevo hotel
         </h1>
     </div>
     <div class="card-body">

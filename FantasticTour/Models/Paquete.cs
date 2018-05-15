@@ -11,7 +11,7 @@ namespace FantasticTour.Models
         public String Nombre { get; set; }
         public DateTime FechaVencimiento { get; set; }
         public bool Disponible { get; set; }
-        public Vuelo Vuelo { get; set; }
+        public Transporte Transporte { get; set; }
         public Estadia Estadia { get; set; }
         public Atraccion Atraccion { get; set; }
     }

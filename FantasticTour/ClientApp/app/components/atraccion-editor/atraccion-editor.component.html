@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-header">
+        <h1 *ngIf="atraccion.id">
+            Editando atracción {{atraccion.id}}
+        </h1>
+        <h1 *ngIf="!atraccion.id">
+            Nueva atracción
+        </h1>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" [(ngModel)]="atraccion.nombre" placeholder="Nombre" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="costo">Costo</label>
+            <div class="input-group">
+                <div class="input-prepend">
+                    <div class="input-group-text">$</div>
+                </div>
+                <input id="costo" [(ngModel)]="atraccion.costo" placeholder="Costo" type="text" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input id="fecha" [(ngModel)]="atraccion.fecha" placeholder="Fecha" type="date" class="form-control" />
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="save()">Guardar</button>
+
+</div>

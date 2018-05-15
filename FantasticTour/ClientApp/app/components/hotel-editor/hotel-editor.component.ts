@@ -29,14 +29,23 @@ export class HotelEditorComponent implements OnInit {
         this.route.queryParams
             .subscribe(params => {
                 console.log(params); 
-                this.id = params.id;
+                if (params.id != null) {
+                    this.id = params.id;    
+                }
                 console.log(this.id);
             });
-        this.httpClient.get<Hotel>(baseUrl + 'api/Hoteles/' + this.id).subscribe(result => {
-            console.log(result);
-            this.hotel = result;
-            
-        }, error => console.error(error));
+
+        if (this.id != null) {
+            this.httpClient.get<Hotel>(baseUrl + 'api/Hoteles/' + this.id).subscribe(result => {
+                    console.log(result);
+                    this.hotel = result;
+                },
+                error => console.error(error));
+        } else {
+            this.hotel = new Hotel();
+        }
+        console.log(this.hotel); 
+
     }
 
     save(){

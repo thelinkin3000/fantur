@@ -7,8 +7,9 @@
         <div class="row">
             <div class="col-2"><strong>Id</strong></div>
             <div class="col-4"><strong>Nombre</strong></div>
-            <div class="col-4"><strong>Direccion</strong></div>
+            <div class="col-2"><strong>Direccion</strong></div>
             <div class="col-2"><strong>Telefono</strong></div>
+            <div class="col-2"><strong>Ciudad</strong></div>
 
         </div>
     </div>
@@ -16,9 +17,11 @@
         <div class="row">
             <div class="col-2">{{hotel.id}}</div>
             <div class="col-4">{{hotel.nombre}}</div>
-            <div class="col-4">{{hotel.direccion}}</div>
+            <div class="col-2">{{hotel.direccion}}</div>
             <div class="col-2">{{hotel.telefono}}</div>
-
+            <div *ngIf="hotel.ciudad" class="col-2">{{hotel.ciudad.nombre}}</div>
         </div>
     </a>
 </div>
+
+<a class="btn btn-primary" [routerLink]="['/hotel-editor']">Agregar</a>

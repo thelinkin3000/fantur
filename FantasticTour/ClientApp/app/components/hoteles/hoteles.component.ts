@@ -13,6 +13,7 @@ export class HotelesComponent implements OnInit {
     
     constructor(httpClient: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         httpClient.get<Hotel[]>(baseUrl + 'api/Hoteles').subscribe(result => {
+            console.log(result);
             this.hoteles = result;
         }, error => console.error(error));
     }

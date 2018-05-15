@@ -42,11 +42,11 @@ module.exports = (env) => {
         },
         plugins: [
 		new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    }),
+			  // Options similar to the same options in webpackOptions.output
+			  // both options are optional
+			  filename: "[name].css",
+			  chunkFilename: "[id].css"
+			}),
             new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
             new webpack.ContextReplacementPlugin(/\@angular\b.*\b(bundles|linker)/, path.join(__dirname, './ClientApp')), // Workaround for https://github.com/angular/angular/issues/11580
             new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/, path.join(__dirname, './ClientApp')), // Workaround for https://github.com/angular/angular/issues/14898
@@ -63,14 +63,14 @@ module.exports = (env) => {
         output: { path: path.join(__dirname, 'wwwroot', 'dist') },
         module: {
             rules: [
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader"
-        ]
-      }
-    ]
+			  {
+				test: /\.css$/,
+				use: [
+				  MiniCssExtractPlugin.loader,
+				  "css-loader"
+				]
+			  }
+			]
         },
         plugins: [
             new webpack.DllPlugin({

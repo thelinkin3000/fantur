@@ -1,0 +1,24 @@
+<h1>
+    Atracciones
+</h1>
+
+<div class="list-group">
+    <div class="list-group-item">
+        <div class="row">
+            <div class="col-2"><strong>Id</strong></div>
+            <div class="col-4"><strong>Nombre</strong></div>
+            <div class="col-2"><strong>Fecha</strong></div>
+            <div class="col-2"><strong>Costo</strong></div>
+            <div class="col-2"><strong>Ciudad</strong></div>
+        </div>
+    </div>
+    <a class="list-group-item list-group-item-action" [routerLink]="['/atraccion-editor']" [queryParams]="{id : atraccion.id}" *ngFor="let atraccion of atracciones">
+        <div class="row">
+            <div class="col-2">{{atraccion.id}}</div>
+            <div class="col-4">{{atraccion.nombre}}</div>
+            <div class="col-2">{{atraccion.direccion}}</div>
+            <div class="col-2">{{atraccion.telefono}}</div>
+            <div *ngIf="atraccion.ciudad" class="col-2">{{atraccion.ciudad.nombre}}</div>
+        </div>
+    </a>
+</div>

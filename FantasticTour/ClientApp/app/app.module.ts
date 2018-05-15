@@ -12,6 +12,8 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { HotelesComponent } from './components/hoteles/hoteles.component';
 import { HotelEditorComponent } from './components/hotel-editor/hotel-editor.component';
+import { AtraccionesComponent } from './components/atracciones/atracciones.component';
+import { AtraccionEditorComponent } from './components/atraccion-editor/atraccion-editor.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +23,9 @@ import { HotelEditorComponent } from './components/hotel-editor/hotel-editor.com
         FetchDataComponent,
         HomeComponent,
         HotelesComponent,
-        HotelEditorComponent
+        HotelEditorComponent,
+        AtraccionesComponent,
+        AtraccionEditorComponent
     ],
     imports: [
         CommonModule,
@@ -33,7 +37,9 @@ import { HotelEditorComponent } from './components/hotel-editor/hotel-editor.com
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'hoteles', component: HotelesComponent },
-            { path: 'hotel-editor', component: HotelEditorComponent},
+            { path: 'hotel-editor', component: HotelEditorComponent },
+            { path: 'atraccion-editor', component: AtraccionEditorComponent },
+            { path: 'atracciones', component: AtraccionesComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ]
