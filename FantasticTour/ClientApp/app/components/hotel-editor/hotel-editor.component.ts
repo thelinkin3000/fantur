@@ -1,42 +1,43 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Hotel } from '../../models/hotel';
 import { Observable } from 'rxjs/Observable';
+import { HotelesService } from '../../services/hoteles.service';
 
 @Component({
   selector: 'app-hotel-editor',
   templateUrl: './hotel-editor.component.html',
   styleUrls: ['./hotel-editor.component.css']
 })
+
 export class HotelEditorComponent implements OnInit {
 
     public hotel : Hotel;
     private id: number;
-    private httpClient: HttpClient;
-    private baseUrl: string;
-    private httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': 'my-auth-token'
-        })
-    };
 
-    constructor(httpClient: HttpClient, @Inject('BASE_URL') baseUrl: string, private route: ActivatedRoute) {
-        this.httpClient = httpClient;
-        this.baseUrl = baseUrl;
+    constructor(private route: ActivatedRoute, private hotelesService:HotelesService, private router:Router) {
+    }
+
+    save() {
+        this.hotelesService.saveHotel(this.hotel).subscribe(result => {
+                this.router.navigate(['hoteles']);
+            },
+            error => { console.log(error) });
+    }
+
+    ngOnInit() {
         this.route.queryParams
             .subscribe(params => {
-                console.log(params); 
+                console.log(params);
                 if (params.id != null) {
-                    this.id = params.id;    
+                    this.id = params.id;
                 }
                 console.log(this.id);
             });
 
         if (this.id != null) {
-            this.httpClient.get<Hotel>(baseUrl + 'api/Hoteles/' + this.id).subscribe(result => {
+            this.hotelesService.getHotel(this.id.toString()).subscribe(result => {
                     console.log(result);
                     this.hotel = result;
                 },
@@ -44,17 +45,6 @@ export class HotelEditorComponent implements OnInit {
         } else {
             this.hotel = new Hotel();
         }
-        console.log(this.hotel); 
-
-    }
-
-    save(){
-        this.httpClient
-            .post<Hotel>(this.baseUrl + 'api/Hoteles', this.hotel, this.httpOptions)
-            .subscribe(result => console.log(result));
-    }
-
-  ngOnInit() {
   }
 
 }

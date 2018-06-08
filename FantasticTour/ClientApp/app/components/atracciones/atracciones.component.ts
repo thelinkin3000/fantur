@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Atraccion } from '../../models/atraccion';
 import { HttpClient } from '@angular/common/http';
+import { AtraccionesService } from '../../services/atracciones.service';
 
 
 @Component({
@@ -12,13 +13,13 @@ export class AtraccionesComponent implements OnInit {
 
     atracciones: Atraccion[];
 
-    constructor(httpClient: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-        httpClient.get<Atraccion[]>(baseUrl + 'api/Atracciones').subscribe(result => {
+    constructor(private atraccionesService : AtraccionesService) {
+        
+    }
+
+    ngOnInit() {
+        this.atraccionesService.getAll().subscribe(result => {
             this.atracciones = result;
         }, error => console.error(error));
     }
-
-  ngOnInit() {
-  }
-
 }

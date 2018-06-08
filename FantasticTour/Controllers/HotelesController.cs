@@ -1,7 +1,10 @@
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using FantasticTour.Models;
+using FantasticTour.Repository;
+using FantasticTour.URF;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +13,14 @@ namespace FantasticTour.Controllers
     public class HotelesController : Controller
     {
         private readonly DataContext _context;
+        private readonly IUnitOfWork _uow;
+        private readonly IService<Hotel> _hotelService;
 
-        public HotelesController(DataContext context)
+        public HotelesController(DataContext context, IService<Hotel> hotelService)
         {
             _context = context;
+            _hotelService = hotelService;
+            _uow = new UnitOfWork(context);
         }
 
         [Route("/api/Hoteles")]
@@ -35,19 +42,21 @@ namespace FantasticTour.Controllers
             Console.WriteLine(hotel);
             if (hotel.Id != 0)
             {
-                if (_context.Hoteles.AsNoTracking().FirstOrDefault(h => h.Id == hotel.Id) == null)
+                Hotel exists = await _hotelService.FindAsync(hotel.Id, new CancellationToken()); 
+                if (exists == null)
                 {
                     return new BadRequestObjectResult(new {error = "Se quiere guardar un hotel que no existe."});
                 }
-                _context.Hoteles.Update(hotel);
+                _hotelService.Detach(exists);
+                _hotelService.Update(hotel);
             }
             else
             {
-                _context.Hoteles.Add(hotel);
+                _hotelService.Insert(hotel);
             }
             try
             {
-                await _context.SaveChangesAsync();
+                await _uow.SaveChangesAsync();
             }
             catch (Exception ex)
             {

@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Hotel } from '../../models/hotel';
-import { HttpClient } from '@angular/common/http';
+import { HotelesService } from '../../services/hoteles.service'
 
 @Component({
   selector: 'app-hoteles',
@@ -11,14 +11,19 @@ export class HotelesComponent implements OnInit {
 
     hoteles: Hotel[];
     
-    constructor(httpClient: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-        httpClient.get<Hotel[]>(baseUrl + 'api/Hoteles').subscribe(result => {
+    constructor(private hotelesService: HotelesService) {
+    }
+
+    ngOnInit() {
+
+        this.getHoteles();
+    }
+
+    getHoteles() {
+        this.hotelesService.getHoteles().subscribe(result => {
             console.log(result);
             this.hoteles = result;
         }, error => console.error(error));
     }
-
-  ngOnInit() {
-  }
 
 }

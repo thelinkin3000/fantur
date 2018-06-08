@@ -19,8 +19,12 @@ namespace FantasticTour
         public DbSet<Hotel> Hoteles { get; set; }
         public DbSet<Pais> Paises { get; set; }
         public DbSet<Paquete> Paquetes { get; set; }
-        public DbSet<PaqueteContratado> PaquetesContratados { get; set; }
         public DbSet<Provincia> Provincias { get; set; }
-        public DbSet<Transporte> Transportes{ get; set; }
+<<<<<<< HEAD
+        public DbSet<Transporte> Vuelos{ get; set; }
+=======
+        public DbSet<Vuelo> Vuelos{ get; set; }
+        public DbSet<PaqueteContratado> PaquetesContratados { get; set; }
+>>>>>>> 6ecddb0cdc6d462bf5a453d570b9c5fefea08e96
     }
 }

@@ -14,6 +14,17 @@ import { HotelesComponent } from './components/hoteles/hoteles.component';
 import { HotelEditorComponent } from './components/hotel-editor/hotel-editor.component';
 import { AtraccionesComponent } from './components/atracciones/atracciones.component';
 import { AtraccionEditorComponent } from './components/atraccion-editor/atraccion-editor.component';
+import { PaquetesComponent } from './components/paquetes/paquetes.component';
+import { PaqueteEditorComponent } from './components/paquete-editor/paquete-editor.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { LoginComponent } from './components/login/login.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { HotelesService } from './services/hoteles.service';
+import { AtraccionesService } from './services/atracciones.service';
+import { PaquetesService } from './services/paquetes.service';
+import { TransportesService } from './services/transportes.service';
+import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
     declarations: [
@@ -25,7 +36,12 @@ import { AtraccionEditorComponent } from './components/atraccion-editor/atraccio
         HotelesComponent,
         HotelEditorComponent,
         AtraccionesComponent,
-        AtraccionEditorComponent
+        AtraccionEditorComponent,
+        PaquetesComponent,
+        PaqueteEditorComponent,
+        RegisterUserComponent,
+        LoginComponent,
+        UserProfileComponent
     ],
     imports: [
         CommonModule,
@@ -42,7 +58,8 @@ import { AtraccionEditorComponent } from './components/atraccion-editor/atraccio
             { path: 'atracciones', component: AtraccionesComponent},
             { path: '**', redirectTo: 'home' }
         ])
-    ]
+    ],
+    providers: [HotelesService, AtraccionesService, PaquetesService, TransportesService, UserService, AuthService]
 })
 export class AppModuleShared {
 }
