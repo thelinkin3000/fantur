@@ -13,15 +13,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FantasticTour.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180504194846_VueloToTransporte")]
-    partial class VueloToTransporte
+    [Migration("20180609231643_CiudadPais")]
+    partial class CiudadPais
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011");
+                .HasAnnotation("ProductVersion", "2.0.3-rtm-10026");
 
             modelBuilder.Entity("FantasticTour.Models.Atraccion", b =>
                 {
@@ -50,11 +50,11 @@ namespace FantasticTour.Migrations
 
                     b.Property<string>("Nombre");
 
-                    b.Property<int?>("ProvinciaId");
+                    b.Property<int?>("PaisId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProvinciaId");
+                    b.HasIndex("PaisId");
 
                     b.ToTable("Ciudades");
                 });
@@ -139,20 +139,24 @@ namespace FantasticTour.Migrations
                     b.ToTable("Paquetes");
                 });
 
-            modelBuilder.Entity("FantasticTour.Models.Provincia", b =>
+            modelBuilder.Entity("FantasticTour.Models.PaqueteContratado", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Nombre");
+                    b.Property<int>("Cantidad");
 
-                    b.Property<int?>("PaisId");
+                    b.Property<DateTime>("Fecha");
+
+                    b.Property<int?>("PaqueteId");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaisId");
+                    b.HasIndex("PaqueteId");
 
-                    b.ToTable("Provincias");
+                    b.ToTable("PaquetesContratados");
                 });
 
             modelBuilder.Entity("FantasticTour.Models.Transporte", b =>
@@ -188,9 +192,9 @@ namespace FantasticTour.Migrations
 
             modelBuilder.Entity("FantasticTour.Models.Ciudad", b =>
                 {
-                    b.HasOne("FantasticTour.Models.Provincia", "Provincia")
+                    b.HasOne("FantasticTour.Models.Pais", "Pais")
                         .WithMany()
-                        .HasForeignKey("ProvinciaId");
+                        .HasForeignKey("PaisId");
                 });
 
             modelBuilder.Entity("FantasticTour.Models.Estadia", b =>
@@ -222,11 +226,11 @@ namespace FantasticTour.Migrations
                         .HasForeignKey("TransporteId");
                 });
 
-            modelBuilder.Entity("FantasticTour.Models.Provincia", b =>
+            modelBuilder.Entity("FantasticTour.Models.PaqueteContratado", b =>
                 {
-                    b.HasOne("FantasticTour.Models.Pais", "Pais")
+                    b.HasOne("FantasticTour.Models.Paquete", "Paquete")
                         .WithMany()
-                        .HasForeignKey("PaisId");
+                        .HasForeignKey("PaqueteId");
                 });
 
             modelBuilder.Entity("FantasticTour.Models.Transporte", b =>

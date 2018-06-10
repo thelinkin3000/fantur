@@ -10,7 +10,7 @@ namespace FantasticTour.Models
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public Provincia Provincia { get; set; }
+        public Pais Pais { get; set; }
         [InverseProperty("Ciudad")]
         public virtual ICollection<Hotel> Hoteles { get; set; }
     }

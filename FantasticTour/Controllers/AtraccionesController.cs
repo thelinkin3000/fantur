@@ -16,21 +16,21 @@ namespace FantasticTour.Controllers
             _context = context;
         }
 
-        [Route("/api/Atracciones")]
-        public IActionResult Atracciones()
+        [Route("/api/[controller]")]
+        public IActionResult GetAll()
         {
             return new OkObjectResult(_context.Atracciones.Include(a => a.Ciudad));
         }
 
-        [Route("/api/Atracciones/{id}")]
-        public IActionResult Atraccion(int id)
+        [Route("/api/[controller]/{id}")]
+        public IActionResult Get(int id)
         {
             Console.WriteLine(id);
             return new OkObjectResult(_context.Atracciones.Include(a => a.Ciudad).FirstOrDefault(a => a.Id == id));
         }
 
         [HttpPost]
-        [Route("/api/Atracciones")]
+        [Route("/api/[controller]")]
         public async Task<IActionResult> Save([FromBody] Atraccion atraccion)
         {
             if (atraccion.Id != 0)

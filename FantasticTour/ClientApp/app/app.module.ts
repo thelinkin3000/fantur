@@ -25,6 +25,7 @@ import { PaquetesService } from './services/paquetes.service';
 import { TransportesService } from './services/transportes.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+import { PagosService } from './services/pagos.service';
 
 @NgModule({
     declarations: [
@@ -55,11 +56,12 @@ import { AuthService } from './services/auth.service';
             { path: 'hoteles', component: HotelesComponent },
             { path: 'hotel-editor', component: HotelEditorComponent },
             { path: 'atraccion-editor', component: AtraccionEditorComponent },
-            { path: 'atracciones', component: AtraccionesComponent},
+            { path: 'atracciones', component: AtraccionesComponent },
+            { path: 'register-user', component: RegisterUserComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ],
-    providers: [HotelesService, AtraccionesService, PaquetesService, TransportesService, UserService, AuthService]
+    providers: [HotelesService, AtraccionesService, PaquetesService, TransportesService, UserService, AuthService, PagosService]
 })
 export class AppModuleShared {
 }

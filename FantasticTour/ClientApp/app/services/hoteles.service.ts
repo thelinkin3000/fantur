@@ -28,7 +28,7 @@ export class HotelesService {
 
     public saveHotel(hotel:Hotel) {
         return this.httpClient
-            .post<Hotel>('api/Hoteles', hotel, this.httpOptions);
+            .post<Hotel>(this.url, hotel, this.httpOptions);
     }
 
 }

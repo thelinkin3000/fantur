@@ -23,21 +23,21 @@ namespace FantasticTour.Controllers
             _uow = new UnitOfWork(context);
         }
 
-        [Route("/api/Hoteles")]
-        public IActionResult Hoteles()
+        [Route("/api/[controller]")]
+        public IActionResult GetAll()
         {
-            return new OkObjectResult(_context.Hoteles.Include(h => h.Ciudad).ThenInclude(c => c.Provincia).ThenInclude(p => p.Pais));
+            return new OkObjectResult(_context.Hoteles.Include(h => h.Ciudad).ThenInclude(p => p.Pais));
         }
 
-        [Route("/api/Hoteles/{id}")]
-        public IActionResult GetHotel(int id)
+        [Route("/api/[controller]/{id}")]
+        public IActionResult Get(int id)
         {
             return new OkObjectResult(_context.Hoteles.FirstOrDefault(h => h.Id == id));
         }
 
         [HttpPost]
-        [Route("/api/Hoteles")]
-        public async Task<IActionResult> SaveHotel([FromBody] Hotel hotel)
+        [Route("/api/[controller]")]
+        public async Task<IActionResult> Save([FromBody] Hotel hotel)
         {
             Console.WriteLine(hotel);
             if (hotel.Id != 0)

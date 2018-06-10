@@ -1,3 +1,54 @@
-<p>
-  register-user works!
-</p>
+<div class="card">
+    <div class="card-header">
+        <h2>Registrate en Fantastic Tour</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <h4>
+                    Datos personales
+                </h4>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" [(ngModel)]="user.nombre" placeholder="Perez Carlos G." type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="fechaNacimiento">Fecha de nacimiento</label>
+                    <input id="fechaNacimiento" [(ngModel)]="user.fechaNacimiento" type="date" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="documento">Documento</label>
+                    <input id="documento" [(ngModel)]="user.numeroDocumento" placeholder="37046022" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input id="telefono" [(ngModel)]="user.telefono" placeholder="+54 (362) 473-7156" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="col-6">
+                <!-- Datos de cuenta -->
+                <h4>
+                    Datos de tu cuenta
+                </h4>
+
+                <div class="form-group">
+                    <label for="email">Correo electronico</label>
+                    <input id="email" [(ngModel)]="user.email" placeholder="ejemplo@mail.com" type="text" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" [(ngModel)]="user.password" placeholder="Password" type="password" class="form-control"/>
+                    <input id="passwordAgain" [(ngModel)]="user.passwordAgain" placeholder="Repeti tu password" type="password" class="form-control"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10"><!--White space. I know, not very elegant.--></div>
+            <div class="col">
+                <a class="btn btn-primary" (click)="save()">Registrate!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    

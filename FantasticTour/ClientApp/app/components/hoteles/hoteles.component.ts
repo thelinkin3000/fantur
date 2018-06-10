@@ -15,7 +15,6 @@ export class HotelesComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.getHoteles();
     }
 
