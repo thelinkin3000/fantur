@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+      <h1 *ngIf="transporte.id">
+          Editando Transporte {{transporte.id}}
+      </h1>
+      <h1 *ngIf="!transporte.id">
+          Nuevo Transporte
+      </h1>
+  </div>
+  <div class="card-body">
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input id="fecha" [(ngModel)]="transporte.fecha" placeholder="Fecha" type="date" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="costo">Costo</label>
+        <div class="input-group">
+            <div class="input-prepend">
+                <div class="input-group-text">$</div>
+            </div>
+            <input id="costo" [(ngModel)]="transporte.costo" placeholder="Costo" type="text" class="form-control" />
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="tipo">Tipo</label>
+          <input id="tipo" [(ngModel)]="transporte.tipo" placeholder="Tipo" type="text" class="form-control" />
+      </div>
+  </div>
+  
+  <button type="button" class="btn btn-primary" (click)="save()">Guardar</button>
+  
+</div>

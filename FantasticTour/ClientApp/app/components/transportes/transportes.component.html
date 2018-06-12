@@ -1,0 +1,28 @@
+<h1>
+  Transportes 
+</h1>
+
+<div class="list-group">
+  <div class="list-group-item">
+      <div class="row">
+          <div class="col-2"><strong>Id</strong></div>
+          <div class="col-2"><strong>Fecha</strong></div>
+          <div class="col-2"><strong>Costo</strong></div>
+          <div class="col-2"><strong>Origen</strong></div>
+          <div class="col-2"><strong>Destino</strong></div>
+          <div class="col-2"><strong>Tipo</strong></div>
+
+      </div>
+  </div>
+  <a class="list-group-item list-group-item-action" [routerLink]="['/transpote-editor']" [queryParams]="{id : transpote.id}" *ngFor="let transpote of transpotees">
+      <div class="row">
+          <div class="col-2">{{transpote.id}}</div>
+          <div class="col-2">{{transpote.fecha}}</div>
+          <div class="col-2">{{transpote.origen}}</div>
+          <div class="col-2">{{transpote.destino}}</div>
+          <div class="col-2">{{transpote.tipo}}</div>
+      </div>
+  </a>
+</div>
+
+<a class="btn btn-primary" [routerLink]="['/transporte-editor']">Agregar</a>
