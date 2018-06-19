@@ -1,7 +1,7 @@
-import { Provincia } from './provincia'; 
+import { Pais } from './pais';
 
 export class Ciudad {
     id: number;
     nombre: string;
-    provincia: Provincia;
+    pais: Pais;
 }

@@ -16,9 +16,11 @@
         <div class="row">
             <div class="col-2">{{atraccion.id}}</div>
             <div class="col-4">{{atraccion.nombre}}</div>
-            <div class="col-2">{{atraccion.direccion}}</div>
-            <div class="col-2">{{atraccion.telefono}}</div>
+            <div class="col-2">{{atraccion.fecha}}</div>
+            <div class="col-2">{{atraccion.costo}}</div>
             <div *ngIf="atraccion.ciudad" class="col-2">{{atraccion.ciudad.nombre}}</div>
         </div>
     </a>
 </div>
+
+<a class="btn btn-primary" [routerLink]="['/atraccion-editor']">Agregar</a>

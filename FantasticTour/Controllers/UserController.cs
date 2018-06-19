@@ -21,7 +21,7 @@ namespace FantasticTour.Controllers
             if (!ModelState.IsValid)
             {
                 return new BadRequestObjectResult(
-                    new {error = "Algún campo falta o es inválido."});
+                    new {error = "AlgÃºn campo falta o es invÃ¡lido."});
             }
             try
             {

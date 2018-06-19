@@ -26,6 +26,8 @@ import { TransportesService } from './services/transportes.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { PagosService } from './services/pagos.service';
+import { TransportesComponent } from './components/transportes/transportes.component';
+import { TransporteEditorComponent } from './components/transporte-editor/transporte-editor.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +44,9 @@ import { PagosService } from './services/pagos.service';
         PaqueteEditorComponent,
         RegisterUserComponent,
         LoginComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        TransportesComponent,
+        TransporteEditorComponent
     ],
     imports: [
         CommonModule,
@@ -58,6 +62,8 @@ import { PagosService } from './services/pagos.service';
             { path: 'atraccion-editor', component: AtraccionEditorComponent },
             { path: 'atracciones', component: AtraccionesComponent },
             { path: 'register-user', component: RegisterUserComponent},
+            { path: 'transportes', component: TransportesComponent},
+            { path: 'transporte-editor', component: TransporteEditorComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],
