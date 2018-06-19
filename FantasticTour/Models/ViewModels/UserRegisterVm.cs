@@ -12,7 +12,6 @@ namespace FantasticTour.Models.ViewModels
         public string Nombre { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string NumeroDocumento { get; set; }
-        public string Sexo { get; set; }
         public string Telefono { get; set; }
     }
 }

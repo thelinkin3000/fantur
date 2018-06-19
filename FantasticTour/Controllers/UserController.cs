@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FantasticTour.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
         }
@@ -23,7 +23,6 @@ namespace FantasticTour.Controllers
                 return new BadRequestObjectResult(
                     new {error = "Algún campo falta o es inválido."});
             }
-
             try
             {
                 await _userService.CreateUser(vm);
@@ -35,6 +34,15 @@ namespace FantasticTour.Controllers
             }
 
             return new OkResult();
+        }
+
+        [Route("/api/[controller]/[action]")]
+        public async Task<IActionResult> Login([FromBody] LoginVm vm)
+        {
+            string token = await _userService.Login(vm);
+            if (token == null)
+                token = "Ah ah ah, no dijiste la palabra mágica"; 
+            return new OkObjectResult(token);
         }
     }
 }
