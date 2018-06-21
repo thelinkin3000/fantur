@@ -5,5 +5,5 @@ export class Hotel {
     nombre: string;
     direccion: string;
     telefono: string;
-    ciudad: Ciudad;
+    ciudadId: number;
 }

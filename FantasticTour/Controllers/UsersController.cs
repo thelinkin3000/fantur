@@ -42,11 +42,11 @@ namespace FantasticTour.Controllers
         public async Task<IActionResult> ConfirmMail([FromBody] EmailConfirmVm vm)
         {
             if(!ModelState.IsValid)
-                return new OkObjectResult(new RequestResultVm(){Message = "Algún dato faltó.", Valid = false});
+                return new OkObjectResult(new RequestResultVm(false,"Algún dato faltó."));
             var result = await _userService.ConfirmEmail(vm.UserId, vm.Token);
             if(result != null)
-                return new OkObjectResult(new RequestResultVm(){Message = "", Valid = true});
-            return new OkObjectResult(new RequestResultVm(){Message = "El token no pudo verificarse", Valid = false});
+                return new OkObjectResult(new RequestResultVm(true, ""));
+            return new OkObjectResult(new RequestResultVm(false, "El token no pudo verificarse"));
         }
 
         [Route("/api/[controller]/[action]")]

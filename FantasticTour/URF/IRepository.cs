@@ -3,11 +3,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace FantasticTour.URF
 {
     public interface IRepository<TEntity> where TEntity : class
     {
+        DbSet<TEntity> Table();
         Task<TEntity> FindAsync(object[] keyValues, CancellationToken cancellationToken);
         Task<TEntity> FindAsync<TKey>(TKey keyValue, CancellationToken cancellationToken);
         Task<bool> ExistsAsync(object[] keyValues, CancellationToken cancellationToken);

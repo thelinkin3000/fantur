@@ -30,9 +30,14 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { EmailConfirmComponent } from './components/email-confirm/email-confirm.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+import { TextInputAutocompleteModule } from 'angular-text-input-autocomplete';
 import { EstadiasService } from './services/estadias.service';
 import { EstadiasComponent } from './components/estadias/estadias.component';
 import { EstadiaEditorComponent } from './components/estadia-editor/estadia-editor.component';
+
+
 
 
 @NgModule({
@@ -62,6 +67,10 @@ import { EstadiaEditorComponent } from './components/estadia-editor/estadia-edit
         CommonModule,
         FormsModule,
         HttpClientModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        TextInputAutocompleteModule,
         NgbModule.forRoot(),
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
