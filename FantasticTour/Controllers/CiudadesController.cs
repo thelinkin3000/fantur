@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FantasticTour.Models;
+using FantasticTour.Models.ViewModels;
 using FantasticTour.URF;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -38,9 +39,9 @@ namespace FantasticTour.Controllers
         [Route("/api/[controller]/{id}")]
         public IActionResult Get(int id)
         {
-            return new OkObjectResult(_context.Ciudades
-                .Include(p => p.Pais)
-                .FirstOrDefault(a => a.Id == id));
+
+            return new OkObjectResult(new RequestResultVm(true,Helpers.Serialize(_context.Ciudades
+                .FirstOrDefault(a => a.Id == id))));
         }
 
         [HttpPost]

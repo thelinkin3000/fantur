@@ -30,6 +30,11 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { EmailConfirmComponent } from './components/email-confirm/email-confirm.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+import { TextInputAutocompleteModule } from 'angular-text-input-autocomplete';
+
+
 
 
 @NgModule({
@@ -57,6 +62,10 @@ import { EmailConfirmComponent } from './components/email-confirm/email-confirm.
         CommonModule,
         FormsModule,
         HttpClientModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        TextInputAutocompleteModule,
         NgbModule.forRoot(),
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },

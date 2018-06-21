@@ -19,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace FantasticTour
 {
@@ -39,6 +40,7 @@ namespace FantasticTour
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 options.SerializerSettings.DateFormatString = "dd/MM/yyyy";
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
 
             services.AddEntityFrameworkNpgsql().AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("FanturDatabase")));
@@ -133,8 +135,16 @@ namespace FantasticTour
             //Register services
 
             services.AddTransient<IRepository<Hotel>, Repository<Hotel>>();
+            services.AddTransient<IRepository<Pais>, Repository<Pais>>();
+            services.AddTransient<IRepository<Ciudad>, Repository<Ciudad>>();
+            services.AddTransient<IRepository<Atraccion>, Repository<Atraccion>>();
             services.AddTransient<IService<Hotel>, Service<Hotel>>();
+            services.AddTransient<IService<Pais>, Service<Pais>>();
+            services.AddTransient<IService<Ciudad>, Service<Ciudad>>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAutocompleteService, AutocompleteService>();
+            services.AddTransient<IMapperService, MapperService>();
+
         }
 
         // This method gets caljled by the runtime. Use this method to configure the HTTP request pipeline.

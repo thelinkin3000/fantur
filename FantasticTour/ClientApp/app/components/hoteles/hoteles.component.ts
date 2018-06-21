@@ -19,9 +19,9 @@ export class HotelesComponent implements OnInit {
     }
 
     getHoteles() {
-        this.hotelesService.getHoteles().subscribe(result => {
-            console.log(result);
-            this.hoteles = result;
+        this.hotelesService.getAll().subscribe(result => {
+            if(result.valid)
+                this.hoteles = JSON.parse(result.message);
         }, error => console.error(error));
     }
 

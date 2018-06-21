@@ -22,6 +22,11 @@ namespace FantasticTour.URF
         protected DataContext Context { get; }
         protected DbSet<TEntity> Set { get; }
 
+        public DbSet<TEntity> Table()
+        {
+            return Set;
+        }
+
         public virtual async Task<TEntity> FindAsync(object[] keyValues, CancellationToken cancellationToken = new CancellationToken())
             => await Set.FindAsync(keyValues, cancellationToken);
 

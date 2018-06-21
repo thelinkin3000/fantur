@@ -1,13 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FantasticTour.Models;
+using FantasticTour.Models.ViewModels;
 using FantasticTour.Repository;
+using FantasticTour.Service;
 using FantasticTour.URF;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace FantasticTour.Controllers
 {
@@ -16,44 +20,59 @@ namespace FantasticTour.Controllers
         private readonly DataContext _context;
         private readonly IUnitOfWork _uow;
         private readonly IService<Hotel> _hotelService;
+        private readonly IService<Ciudad> _ciudadService;
+        private readonly IMapperService _mapperService;
 
-        public HotelesController(DataContext context, IService<Hotel> hotelService)
+        public HotelesController(DataContext context, IService<Hotel> hotelService, IService<Ciudad> ciudadService, IMapperService mapperService)
         {
             _context = context;
             _hotelService = hotelService;
+            _ciudadService = ciudadService;
+            _mapperService = mapperService;
             _uow = new UnitOfWork(context);
         }
 
         [Route("/api/[controller]")]
         public IActionResult GetAll()
         {
-            return new OkObjectResult(_context.Hoteles.Include(h => h.Ciudad).ThenInclude(p => p.Pais));
+            List<HotelVm> result = _context.Hoteles
+                .Include(h => h.Ciudad)
+                .Select(h => _mapperService.MapHotel(h))
+                .ToList();
+            return new OkObjectResult(new RequestResultVm(true, Helpers.Serialize(result)));
         }
 
         [Route("/api/[controller]/{id}")]
         public IActionResult Get(int id)
         {
-            return new OkObjectResult(_context.Hoteles.FirstOrDefault(h => h.Id == id));
+            HotelVm result = _mapperService.MapHotel(_context.Hoteles.Include(h => h.Ciudad)
+                .FirstOrDefault(h => h.Id == id));
+            return new OkObjectResult(new RequestResultVm(true, Helpers.Serialize(result)));
         }
 
         [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("/api/[controller]")]
-        public async Task<IActionResult> Save([FromBody] Hotel hotel)
+        public async Task<IActionResult> Save([FromBody] HotelVm hotelVm)
         {
-            Console.WriteLine(hotel);
-            if (hotel.Id != 0)
+            Console.WriteLine(hotelVm);
+            if (hotelVm.Id != 0)
             {
-                Hotel exists = await _hotelService.FindAsync(hotel.Id, new CancellationToken()); 
-                if (exists == null)
+                Hotel hotel = await _hotelService.FindAsync(hotelVm.Id, new CancellationToken()); 
+                if (hotel == null)
                 {
-                    return new BadRequestObjectResult(new {error = "Se quiere guardar un hotel que no existe."});
+                    return new OkObjectResult(new RequestResultVm(false, "Se quiere guardar un hotel que no existe."));
                 }
-                _hotelService.Detach(exists);
+                hotel = await _mapperService.MapHotel(hotelVm,hotel);
+                if(hotelVm.CiudadId != 0 && hotel.Ciudad == null)
+                    return new OkObjectResult(new RequestResultVm(false, $"No existe la ciudad con id {hotelVm.CiudadId}"));
                 _hotelService.Update(hotel);
             }
             else
             {
+                Hotel hotel = await _mapperService.MapHotel(hotelVm);
+                if (hotelVm.CiudadId != 0 && hotel.Ciudad == null)
+                    return new OkObjectResult(new RequestResultVm(false, $"No existe la ciudad con id {hotelVm.CiudadId}"));
                 _hotelService.Insert(hotel);
             }
             try
@@ -62,9 +81,9 @@ namespace FantasticTour.Controllers
             }
             catch (Exception ex)
             {
-                return new BadRequestObjectResult(new {error = ex.Message});
+                return new OkObjectResult(new RequestResultVm(false, $"{ex.Message}"));
             }
-            return new OkObjectResult(hotel);
+            return new OkObjectResult(new RequestResultVm(true));
         }
     }
 }
