@@ -16,6 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.3" />
@@ -48,7 +49,7 @@
     <Content Include="Controllers\HomeController.cs" />
     <Content Include="Controllers\HotelesController.cs" />
     <Content Include="Controllers\SampleDataController.cs" />
-    <Content Include="Controllers\UserController.cs" />
+    <Content Include="Controllers\UsersController.cs" />
   </ItemGroup>
 
   <ItemGroup>

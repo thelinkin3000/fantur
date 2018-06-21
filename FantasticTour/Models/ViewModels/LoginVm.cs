@@ -1,4 +1,6 @@
-﻿namespace FantasticTour.Models.ViewModels
+﻿using Microsoft.AspNetCore.Mvc.DataAnnotations.Internal;
+
+namespace FantasticTour.Models.ViewModels
 {
     public class LoginVm
     {

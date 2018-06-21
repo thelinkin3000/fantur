@@ -11,27 +11,41 @@
                     <span class='glyphicon glyphicon-home'></span> Home
                 </a>
             </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
+            <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isAdmin | async" >
                 <a class="nav-link" [routerLink]="['/hoteles']">
                     <span class='glyphicon glyphicon-th-list'></span> Hoteles
                 </a>
             </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
+            <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isAdmin  | async">
                 <a class="nav-link" [routerLink]="['/atracciones']">
                     <span class='glyphicon glyphicon-th-list'></span> Atracciones
                 </a>
             </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
+            <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isAdmin  | async">
                 <a class="nav-link" [routerLink]="['/transportes']">
                     <span class='glyphicon glyphicon-th-list'></span> Transportes
                 </a>
             </li>
-            
+
         </ul>
-        <div class="nav-item btn btn-outline-dark mr-4" [routerLinkActive]="['link-active']">
+        <div class="nav-item btn btn-outline-dark mr-4" [routerLinkActive]="['link-active']" *ngIf="!(logged | async)">
             <a class="nav-link" [routerLink]="['/register-user']">
                 <span class='glyphicon glyphicon-th-list'></span> Registrate
             </a>
+        </div>
+        <div class="nav-item btn btn-outline-dark mr-4" [routerLinkActive]="['link-active']" *ngIf="!(logged | async)">
+            <a class="nav-link" [routerLink]="['/login']">
+                <span class='glyphicon glyphicon-th-list'></span> Ingresa
+            </a>
+        </div>
+        <div class="nav-item dropdown" *ngIf="logged | async">
+            <a class="nav-link dropdown-toggle" 
+                href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{username}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" (click)="logout()">Salir</a>
+            </div>
         </div>
     </div>
 </nav>

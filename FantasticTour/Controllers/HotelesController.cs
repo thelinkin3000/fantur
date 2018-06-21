@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FantasticTour.Models;
 using FantasticTour.Repository;
 using FantasticTour.URF;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,6 +36,7 @@ namespace FantasticTour.Controllers
             return new OkObjectResult(_context.Hoteles.FirstOrDefault(h => h.Id == id));
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("/api/[controller]")]
         public async Task<IActionResult> Save([FromBody] Hotel hotel)

@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
-
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -28,6 +26,11 @@ import { AuthService } from './services/auth.service';
 import { PagosService } from './services/pagos.service';
 import { TransportesComponent } from './components/transportes/transportes.component';
 import { TransporteEditorComponent } from './components/transporte-editor/transporte-editor.component';
+import { ErrorModalComponent } from './components/error-modal/error-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { EmailConfirmComponent } from './components/email-confirm/email-confirm.component';
+
 
 @NgModule({
     declarations: [
@@ -46,12 +49,15 @@ import { TransporteEditorComponent } from './components/transporte-editor/transp
         LoginComponent,
         UserProfileComponent,
         TransportesComponent,
-        TransporteEditorComponent
+        TransporteEditorComponent,
+        ErrorModalComponent,
+        EmailConfirmComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
         HttpClientModule,
+        NgbModule.forRoot(),
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
@@ -64,10 +70,13 @@ import { TransporteEditorComponent } from './components/transporte-editor/transp
             { path: 'register-user', component: RegisterUserComponent},
             { path: 'transportes', component: TransportesComponent},
             { path: 'transporte-editor', component: TransporteEditorComponent },
+            { path: 'login', component: LoginComponent},
+            { path: 'confirmation', component: EmailConfirmComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ],
-    providers: [HotelesService, AtraccionesService, PaquetesService, TransportesService, UserService, AuthService, PagosService]
+    entryComponents: [ErrorModalComponent],
+    providers: [HotelesService, AtraccionesService, PaquetesService, TransportesService, AuthService, PagosService, UserService, JwtHelperService]
 })
 export class AppModuleShared {
 }

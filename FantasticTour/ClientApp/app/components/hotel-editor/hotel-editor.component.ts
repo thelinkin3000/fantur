@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Hotel } from '../../models/hotel';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HotelesService } from '../../services/hoteles.service';
 
 @Component({

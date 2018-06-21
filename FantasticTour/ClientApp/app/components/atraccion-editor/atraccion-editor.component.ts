@@ -60,7 +60,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Atraccion } from '../../models/atraccion';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AtraccionesService } from '../../services/atracciones.service';
 
 @Component({
