@@ -26,6 +26,11 @@
                     <span class='glyphicon glyphicon-th-list'></span> Transportes
                 </a>
             </li>
+            <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isAdmin  | async">
+                <a class="nav-link" [routerLink]="['/estadias']">
+                    <span class='glyphicon glyphicon-th-list'></span> Estadias
+                </a>
+            </li>
 
         </ul>
         <div class="nav-item btn btn-outline-dark mr-4" [routerLinkActive]="['link-active']" *ngIf="!(logged | async)">

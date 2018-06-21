@@ -30,6 +30,9 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { EmailConfirmComponent } from './components/email-confirm/email-confirm.component';
+import { EstadiasService } from './services/estadias.service';
+import { EstadiasComponent } from './components/estadias/estadias.component';
+import { EstadiaEditorComponent } from './components/estadia-editor/estadia-editor.component';
 
 
 @NgModule({
@@ -51,7 +54,9 @@ import { EmailConfirmComponent } from './components/email-confirm/email-confirm.
         TransportesComponent,
         TransporteEditorComponent,
         ErrorModalComponent,
-        EmailConfirmComponent
+        EmailConfirmComponent,
+        EstadiasComponent,
+        EstadiaEditorComponent
     ],
     imports: [
         CommonModule,
@@ -70,13 +75,15 @@ import { EmailConfirmComponent } from './components/email-confirm/email-confirm.
             { path: 'register-user', component: RegisterUserComponent},
             { path: 'transportes', component: TransportesComponent},
             { path: 'transporte-editor', component: TransporteEditorComponent },
+            { path: 'estadias', component: EstadiasComponent},
+            { path: 'estadia-editor', component: EstadiaEditorComponent },
             { path: 'login', component: LoginComponent},
             { path: 'confirmation', component: EmailConfirmComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ],
     entryComponents: [ErrorModalComponent],
-    providers: [HotelesService, AtraccionesService, PaquetesService, TransportesService, AuthService, PagosService, UserService, JwtHelperService]
+    providers: [EstadiasService, HotelesService, AtraccionesService, PaquetesService, TransportesService, AuthService, PagosService, UserService, JwtHelperService]
 })
 export class AppModuleShared {
 }

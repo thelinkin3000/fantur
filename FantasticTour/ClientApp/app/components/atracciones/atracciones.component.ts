@@ -3,7 +3,6 @@ import { Atraccion } from '../../models/atraccion';
 import { HttpClient } from '@angular/common/http';
 import { AtraccionesService } from '../../services/atracciones.service';
 
-
 @Component({
   selector: 'app-atracciones',
   templateUrl: './atracciones.component.html',

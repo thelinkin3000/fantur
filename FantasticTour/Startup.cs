@@ -60,7 +60,7 @@ namespace FantasticTour
                 ValidateIssuer = true,
                 ValidIssuer = Configuration["Jwt:Issuer"],
 
-                ValidateAudience = true,
+                ValidateAudience = true, 
                 ValidAudience = Configuration["Jwt:Audience"],
 
                 ValidateIssuerSigningKey = true,
