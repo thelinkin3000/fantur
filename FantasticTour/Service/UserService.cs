@@ -8,6 +8,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using FantasticTour.Models.ViewModels;
+using Hangfire;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,7 @@ namespace FantasticTour.Service
         Task<FanturUser> ConfirmEmail(string userId, string token);
         Task<string> GetTokenForEmail(FanturUser user);
         Task SendConfirmationEmail(FanturUser user);
+        bool FireSendConfirmationEmail(FanturUser user);
     }
 
     public class UserService : IUserService
@@ -61,7 +63,7 @@ namespace FantasticTour.Service
             newUser.Email = vm.Email;
             await _userManager.CreateAsync(newUser, vm.Password);
             await _userManager.AddToRoleAsync(newUser, "user");
-            await SendConfirmationEmail(newUser);
+            FireSendConfirmationEmail(newUser);
             return newUser;
         }
 
@@ -152,6 +154,12 @@ namespace FantasticTour.Service
                 client.Disconnect(true);
             }
        }
+
+        public bool FireSendConfirmationEmail(FanturUser user)
+        {
+            BackgroundJob.Enqueue(() => SendConfirmationEmail(user));
+            return true;
+        }
 
 
         public async Task<string> GenerateEncodedToken(FanturUser user)

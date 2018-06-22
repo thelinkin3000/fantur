@@ -8,6 +8,8 @@ using FantasticTour.Models.ViewModels;
 using FantasticTour.Repository;
 using FantasticTour.Service;
 using FantasticTour.URF;
+using Hangfire;
+using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,8 +46,10 @@ namespace FantasticTour
             });
 
             services.AddEntityFrameworkNpgsql().AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("FanturDatabase")));
-
-
+            var storage = new PostgreSqlStorage(Configuration.GetConnectionString("FanturDatabase"));
+            Hangfire.GlobalConfiguration.Configuration.UseStorage(storage);
+            services.AddHangfire(c => c.UseStorage(storage));
+            services.AddHangfire(config => config.UseStorage(storage));
 
             _signInKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]));
 
@@ -166,6 +170,9 @@ namespace FantasticTour
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseHangfireServer();
+            app.UseHangfireDashboard();
 
             app.UseMvc(routes =>
             {

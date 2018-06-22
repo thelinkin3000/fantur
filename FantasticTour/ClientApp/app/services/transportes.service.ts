@@ -8,25 +8,25 @@ export class TransportesService {
   private httpOptions = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'my-auth-token'
+        'Authorization': 'Bearer ' + localStorage.getItem("userToken")
     })
 };
 
 constructor(private httpClient: HttpClient) {}
 
-url: string = '/api/Transportees';
+url: string = '/api/Transportes';
 
-public getTransportees(): Observable<Transporte[]> {
+public getAll(): Observable<Transporte[]> {
     return this.httpClient.get<Transporte[]>(this.url);
 }
 
-public getTransporte(id: string): Observable<Transporte> {
+public get(id: string): Observable<Transporte> {
     return this.httpClient.get<Transporte>(this.url + '/' + id)
 }
 
-public saveTransporte(Transporte:Transporte) {
+public save(transporte:Transporte) {
     return this.httpClient
-        .post<Transporte>('api/Transportees', Transporte, this.httpOptions);
+        .post<Transporte>('api/Transportees', transporte, this.httpOptions);
 }
 
 }

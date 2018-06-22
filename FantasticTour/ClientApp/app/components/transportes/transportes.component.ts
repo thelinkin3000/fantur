@@ -21,7 +21,7 @@ export class TransportesComponent implements OnInit {
     }
 
     getTransporte() {
-        this.transportesService.getTransportees().subscribe(result => {
+        this.transportesService.getAll().subscribe(result => {
             console.log(result);
             this.transportes = result;
         }, error => console.error(error));
