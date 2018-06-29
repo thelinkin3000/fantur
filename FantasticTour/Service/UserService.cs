@@ -28,6 +28,7 @@ namespace FantasticTour.Service
         Task<string> GetTokenForEmail(FanturUser user);
         Task SendConfirmationEmail(FanturUser user);
         bool FireSendConfirmationEmail(FanturUser user);
+        List<string> GetMailsForMailing();
     }
 
     public class UserService : IUserService
@@ -37,13 +38,15 @@ namespace FantasticTour.Service
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private JwtIssuerOptions jwtIssuerOptions;
+        private IdentityContext _identityContext;
 
-        public UserService(UserManager<FanturUser> userManager, SignInManager<FanturUser> signInManager, IConfiguration configuration, RoleManager<IdentityRole> roleManager)
+        public UserService(UserManager<FanturUser> userManager, SignInManager<FanturUser> signInManager, IConfiguration configuration, RoleManager<IdentityRole> roleManager, IdentityContext identityContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _roleManager = roleManager;
+            _identityContext = identityContext;
             jwtIssuerOptions = new JwtIssuerOptions();
             jwtIssuerOptions.Issuer = _configuration["Jwt:Issuer"];
             jwtIssuerOptions.Audience = _configuration["Jwt:Audience"];
@@ -190,6 +193,11 @@ namespace FantasticTour.Service
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
             return encodedJwt;
+        }
+
+        public List<string> GetMailsForMailing()
+        {
+            return _identityContext.Users.Select(u => u.Email).ToList();
         }
 
 

@@ -26,4 +26,10 @@ namespace FantasticTour.Models.ViewModels
         public int DestinoId { get; set; }
         public int TipoTransporte { get; set; }
     }
+
+    public class MailingVm
+    {
+        public string Titulo { get; set; }  
+        public string Cuerpo { get; set; }  
+    }
 }

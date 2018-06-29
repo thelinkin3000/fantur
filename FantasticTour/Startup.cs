@@ -148,6 +148,7 @@ namespace FantasticTour
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAutocompleteService, AutocompleteService>();
             services.AddTransient<IMapperService, MapperService>();
+            services.AddTransient<IMailingService, MailingService>();
 
         }
 
@@ -157,10 +158,6 @@ namespace FantasticTour
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true
-                });
             }
             else
             {

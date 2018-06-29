@@ -21,6 +21,7 @@ import { HotelesService } from './services/hoteles.service';
 import { AtraccionesService } from './services/atracciones.service';
 import { PaquetesService } from './services/paquetes.service';
 import { TransportesService } from './services/transportes.service';
+import { MailingService } from './services/mailing.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { PagosService } from './services/pagos.service';
@@ -36,6 +37,9 @@ import { TextInputAutocompleteModule } from 'angular-text-input-autocomplete';
 import { EstadiasService } from './services/estadias.service';
 import { EstadiasComponent } from './components/estadias/estadias.component';
 import { EstadiaEditorComponent } from './components/estadia-editor/estadia-editor.component';
+import { SendMailingComponent } from './components/send-mailing/send-mailing.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 
 
 
@@ -61,7 +65,8 @@ import { EstadiaEditorComponent } from './components/estadia-editor/estadia-edit
         ErrorModalComponent,
         EmailConfirmComponent,
         EstadiasComponent,
-        EstadiaEditorComponent
+        EstadiaEditorComponent,
+        SendMailingComponent
     ],
     imports: [
         CommonModule,
@@ -88,11 +93,12 @@ import { EstadiaEditorComponent } from './components/estadia-editor/estadia-edit
             { path: 'estadia-editor', component: EstadiaEditorComponent },
             { path: 'login', component: LoginComponent},
             { path: 'confirmation', component: EmailConfirmComponent},
+            { path: 'send-mailing', component: SendMailingComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ],
     entryComponents: [ErrorModalComponent],
-    providers: [EstadiasService, HotelesService, AtraccionesService, PaquetesService, TransportesService, AuthService, PagosService, UserService, JwtHelperService]
+    providers: [MailingService, EstadiasService, HotelesService, AtraccionesService, PaquetesService, TransportesService, AuthService, PagosService, UserService, JwtHelperService]
 })
 export class AppModuleShared {
 }
