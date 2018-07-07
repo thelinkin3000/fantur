@@ -25,6 +25,7 @@ import { MailingService } from './services/mailing.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { PagosService } from './services/pagos.service';
+import { ContratarPaquetesService } from './services/contratar-paquetes.service';
 import { TransportesComponent } from './components/transportes/transportes.component';
 import { TransporteEditorComponent } from './components/transporte-editor/transporte-editor.component';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
@@ -39,6 +40,9 @@ import { EstadiasComponent } from './components/estadias/estadias.component';
 import { EstadiaEditorComponent } from './components/estadia-editor/estadia-editor.component';
 import { SendMailingComponent } from './components/send-mailing/send-mailing.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { PagosComponent } from './components/pagos/pagos.component';
+import { ContratarPaqueteComponent } from './components/contratar-paquete/contratar-paquete.component';
+import {NgxMaskModule} from 'ngx-mask'
 
 
 
@@ -66,9 +70,12 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
         EmailConfirmComponent,
         EstadiasComponent,
         EstadiaEditorComponent,
-        SendMailingComponent
+        SendMailingComponent,
+        PagosComponent,
+        ContratarPaqueteComponent
     ],
     imports: [
+        NgxMaskModule.forRoot(),
         CommonModule,
         FormsModule,
         HttpClientModule,
@@ -94,11 +101,12 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
             { path: 'login', component: LoginComponent},
             { path: 'confirmation', component: EmailConfirmComponent},
             { path: 'send-mailing', component: SendMailingComponent},
+            { path: 'pago', component: PagosComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ],
     entryComponents: [ErrorModalComponent],
-    providers: [MailingService, EstadiasService, HotelesService, AtraccionesService, PaquetesService, TransportesService, AuthService, PagosService, UserService, JwtHelperService]
+    providers: [MailingService, EstadiasService, HotelesService, AtraccionesService, PaquetesService, TransportesService, AuthService, PagosService, UserService, JwtHelperService, ContratarPaquetesService]
 })
 export class AppModuleShared {
 }
