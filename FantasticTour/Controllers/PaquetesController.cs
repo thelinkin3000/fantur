@@ -20,7 +20,7 @@ namespace FantasticTour.Controllers
         {
             return new OkObjectResult(_context.Paquetes
                 .Include(p => p.Atraccion)
-                .Include(p => p.Estadia)
+                .Include(p => p.Estadia.Hotel)
                 .Include(p => p.Transporte));
         }
 
@@ -29,7 +29,7 @@ namespace FantasticTour.Controllers
         {
             return new OkObjectResult(_context.Paquetes
                 .Include(p => p.Atraccion)
-                .Include(p => p.Estadia)
+                .Include(p => p.Estadia.Hotel)
                 .Include(p => p.Transporte)
                 .FirstOrDefault(a => a.Id == id));
         }

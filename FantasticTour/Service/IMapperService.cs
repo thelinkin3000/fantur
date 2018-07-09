@@ -10,6 +10,6 @@ namespace FantasticTour.Service
         HotelVm MapHotel(Hotel hotel);
 
         Task<Transporte> MapTransporte(TransporteVm vm, Transporte transporte = null);
-        TransporteVm MapHotel(Transporte transporte);
+        TransporteVm MapTransporte(Transporte transporte);
     }
 }

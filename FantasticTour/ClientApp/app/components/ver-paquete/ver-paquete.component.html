@@ -1,19 +1,17 @@
 <div >
-    
-  <a *ngFor="let paquete of paquetes">
     <div class="col-12">
       <div class="card">
         <div class="card-block m-2 col-12">
-          <h3 class="card-title">{{ paquete.nombre }}</h3>
+          <h3 class="card-title">{{ paquete.nombre }}</h3> 
           <p class="card-text">Atracción: {{ paquete.atraccion.nombre }}</p>
           <p class="card-text">Hotel: {{ paquete.estadia.hotel.nombre }}</p>
           <p class="card-text">Disponible Hasta: {{ paquete.fechaVencimiento }}</p>
-          <a class="btn btn-primary" [routerLink]="['/ver-paquete']" [queryParams]="{id : paquete.id}">Ver Paquete</a>
+          <!-- Agregar todos los otros atributos -->
+          <a class="btn btn-primary" [routerLink]="['/pago']">Comprar</a>
+          <a class="btn btn-secondary" [routerLink]="['/paquetes']">Volver al listado</a>
         </div>
       </div>
     </div>
-    <br> 
-  </a>
 
 
 </div>

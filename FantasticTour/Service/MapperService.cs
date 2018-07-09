@@ -16,7 +16,7 @@ namespace FantasticTour.Service
         {
             _ciudadService = ciudadService;
             _hotelService = hotelService;
-            _transporteService = transporteService;
+           // _transporteService = transporteService;
         }
 
 
@@ -61,7 +61,7 @@ namespace FantasticTour.Service
             return transporte;
         }
 
-        public TransporteVm MapHotel(Transporte transporte)
+        public TransporteVm MapTransporte(Transporte transporte)
         {
             TransporteVm result = new TransporteVm();
             result.Id = transporte.Id;

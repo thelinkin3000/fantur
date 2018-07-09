@@ -42,7 +42,8 @@ import { SendMailingComponent } from './components/send-mailing/send-mailing.com
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { PagosComponent } from './components/pagos/pagos.component';
 import { ContratarPaqueteComponent } from './components/contratar-paquete/contratar-paquete.component';
-import {NgxMaskModule} from 'ngx-mask'
+import {NgxMaskModule} from 'ngx-mask';
+import { VerPaqueteComponent } from './components/ver-paquete/ver-paquete.component'
 
 
 
@@ -72,7 +73,8 @@ import {NgxMaskModule} from 'ngx-mask'
         EstadiaEditorComponent,
         SendMailingComponent,
         PagosComponent,
-        ContratarPaqueteComponent
+        ContratarPaqueteComponent,
+        VerPaqueteComponent
     ],
     imports: [
         NgxMaskModule.forRoot(),
@@ -102,6 +104,8 @@ import {NgxMaskModule} from 'ngx-mask'
             { path: 'confirmation', component: EmailConfirmComponent},
             { path: 'send-mailing', component: SendMailingComponent},
             { path: 'pago', component: PagosComponent},
+            { path: 'paquetes', component: PaquetesComponent},
+            { path: 'ver-paquete', component: VerPaqueteComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ],

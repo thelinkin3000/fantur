@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Paquete } from '../../models/paquete';
+import { HttpClient } from '@angular/common/http';
+import { PaquetesService } from '../../services/paquetes.service';
 
 @Component({
   selector: 'app-paquetes',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaquetesComponent implements OnInit {
 
-  constructor() { }
+  paquetes: Paquete[];
+
+  constructor(private paquetesService : PaquetesService) { }
 
   ngOnInit() {
+    this.paquetesService.getPaquetes().subscribe(result => {
+      console.log(result);
+      this.paquetes = result;
+    }, error => console.error(error));
   }
 
 }

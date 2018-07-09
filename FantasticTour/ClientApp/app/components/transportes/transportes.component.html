@@ -14,13 +14,14 @@
 
       </div>
   </div>
-  <a class="list-group-item list-group-item-action" [routerLink]="['/transpote-editor']" [queryParams]="{id : transpote.id}" *ngFor="let transpote of transpotees">
+  <a class="list-group-item list-group-item-action" [routerLink]="['/transporte-editor']" [queryParams]="{id : transporte.id}" *ngFor="let transporte of transportes">
       <div class="row">
-          <div class="col-2">{{transpote.id}}</div>
-          <div class="col-2">{{transpote.fecha}}</div>
-          <div class="col-2">{{transpote.origen}}</div>
-          <div class="col-2">{{transpote.destino}}</div>
-          <div class="col-2">{{transpote.tipo}}</div>
+          <div class="col-2">{{transporte.id}}</div>
+          <div class="col-2">{{transporte.fecha}}</div>
+          <div class="col-2">{{transporte.costo}}</div>
+          <div class="col-2">{{transporte.origen}}</div>
+          <div class="col-2">{{transporte.destino}}</div>
+          <div class="col-2">{{transporte.tipo}}</div>
       </div>
   </a>
 </div>

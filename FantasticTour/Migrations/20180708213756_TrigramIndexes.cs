@@ -22,7 +22,6 @@ namespace FantasticTour.Migrations
             migrationBuilder.Sql(@"DROP INDEX ""IX_Paises_NombreTGR""");
             migrationBuilder.Sql(@"DROP INDEX ""IX_Hoteles_NombreTGR""");
             migrationBuilder.Sql(@"DROP INDEX ""IX_Atracciones_NombreTGR""");
-
         }
     }
 }

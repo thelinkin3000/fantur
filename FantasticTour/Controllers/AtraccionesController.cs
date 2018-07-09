@@ -37,7 +37,7 @@ namespace FantasticTour.Controllers
             {
                 if (_context.Atracciones.AsNoTracking().FirstOrDefault(a => a.Id == atraccion.Id) == null)
                 {
-                    return new OkObjectResult(new {error = "Se quiere guardar una atracción que no existe."});
+                    return new OkObjectResult(new {error = "Se quiere guardar una atracciÃ³n que no existe."});
                 }
                 _context.Atracciones.Update(atraccion);
             }
