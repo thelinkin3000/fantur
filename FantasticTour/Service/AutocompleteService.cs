@@ -14,6 +14,7 @@ namespace FantasticTour.Service
         private readonly IRepository<Ciudad> _ciudadRepository;
         private readonly IRepository<Hotel> _hotelRepository;
         private readonly IRepository<Atraccion> _atraccionRepository;
+        private const int maxAutocomplete = 5;
 
         public AutocompleteService(IRepository<Pais> paisRepository, IRepository<Ciudad> ciudadRepository, IRepository<Hotel> hotelRepository, IRepository<Atraccion> atraccionRepository)
         {
@@ -35,6 +36,7 @@ namespace FantasticTour.Service
                 .Table()
                 .Where(p => EF.Functions.ILike(p.Nombre, builder.ToString()))
                 .Select(p => new AutocompleteResultVm(){Text = p.Nombre, Value = p.Id})
+                .Take(maxAutocomplete)
                 .ToList();
             return result;
         }
@@ -52,6 +54,7 @@ namespace FantasticTour.Service
                 .Include(p => p.Pais)
                 .Where(p => EF.Functions.ILike(p.Nombre, builder.ToString()))
                 .Select(p => new AutocompleteResultVm() { Text = $"{p.Nombre} ({p.Pais.Nombre})", Value = p.Id })
+                .Take(maxAutocomplete)
                 .ToList();
             return result;
         }
@@ -68,6 +71,7 @@ namespace FantasticTour.Service
                 .Table()
                 .Where(p => EF.Functions.ILike(p.Nombre, builder.ToString()))
                 .Select(p => new AutocompleteResultVm() { Text = p.Nombre, Value = p.Id })
+                .Take(maxAutocomplete)
                 .ToList();
             return result;
         }
@@ -84,6 +88,7 @@ namespace FantasticTour.Service
                 .Table()
                 .Where(p => EF.Functions.ILike(p.Nombre, builder.ToString()))
                 .Select(p => new AutocompleteResultVm() { Text = p.Nombre, Value = p.Id })
+                .Take(maxAutocomplete)
                 .ToList();
             return result;
         }

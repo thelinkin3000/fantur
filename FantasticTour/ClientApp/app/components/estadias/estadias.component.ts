@@ -18,7 +18,9 @@ export class EstadiasComponent implements OnInit {
 
     ngOnInit() {
         this.estadiasService.getEstadias().subscribe(result => {
-            this.estadias = result;
+            if (result.valid) {
+                this.estadias = JSON.parse(result.message);
+            }
         }, error => console.error(error));
         
     }

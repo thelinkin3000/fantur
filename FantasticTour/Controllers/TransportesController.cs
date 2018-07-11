@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FantasticTour.Models;
+using FantasticTour.Models.ViewModels;
+using FantasticTour.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,31 +11,38 @@ namespace FantasticTour.Controllers
     public class TransportesController : Controller
     {
         private readonly DataContext _context;
+        private readonly IMapperService _mapperService;
 
-        public TransportesController(DataContext context)
+        public TransportesController(DataContext context, IMapperService mapperService)
         {
             _context = context;
+            _mapperService = mapperService;
         }
 
         [Route("/api/[controller]")]
         public IActionResult GetAll()
         {
-            return new OkObjectResult(_context.Transportes
+            var result = _context.Transportes
                 .Include(p => p.Destino)
                 .ThenInclude(p => p.Pais)
                 .Include(p => p.Origen)
-                .ThenInclude(p => p.Pais));
+                .ThenInclude(p => p.Pais)
+                .Select(p => _mapperService.MapTransporte(p))
+                .ToList();
+            return new OkObjectResult(new RequestResultVm(true, Helpers.Serialize(result)));
         }
 
         [Route("/api/[controller]/{id}")]
         public IActionResult Get(int id)
         {
-            return new OkObjectResult(_context.Transportes
+            var result = _context.Transportes
                 .Include(p => p.Destino)
                 .ThenInclude(p => p.Pais)
                 .Include(p => p.Origen)
                 .ThenInclude(p => p.Pais)
-                .FirstOrDefault(a => a.Id == id));
+                .Select(p => _mapperService.MapTransporte(p))
+                .FirstOrDefault(a => a.Id == id);
+            return new OkObjectResult(new RequestResultVm(true, Helpers.Serialize(result)));
         }
 
         [HttpPost]

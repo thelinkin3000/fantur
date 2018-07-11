@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using FantasticTour.Models;
+using FantasticTour.Models.ViewModels;
+using FantasticTour.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,23 +12,36 @@ namespace FantasticTour.Controllers
     public class EstadiasController : Controller
     {
         private readonly DataContext _context;
+        private readonly IMapperService _mapperService;
 
-        public EstadiasController(DataContext context)
+        public EstadiasController(DataContext context, IMapperService mapperService)
         {
             _context = context;
+            _mapperService = mapperService;
         }
 
         [Route("/api/[controller]")]
         public IActionResult GetAll()
         {
-            return new OkObjectResult(_context.Estadias.Include(a => a.Hotel));
+            var result = _context
+                .Estadias
+                .Include(a => a.Hotel)
+                .ThenInclude(h => h.Ciudad)
+                .Select(h => _mapperService.MapEstadia(h))
+                .ToList();
+            return new OkObjectResult(new RequestResultVm(true, Helpers.Serialize(result)));
         }
 
         [Route("/api/[controller]/{id}")]
         public IActionResult Get(int id)
         {
-            Console.WriteLine(id);
-            return new OkObjectResult(_context.Estadias.Include(a => a.Hotel).FirstOrDefault(a => a.Id == id));
+            var result = _context
+                .Estadias
+                .Include(a => a.Hotel)
+                .ThenInclude(h => h.Ciudad)
+                .Select(h => _mapperService.MapEstadia(h))
+                .FirstOrDefault(a => a.Id == id);
+            return new OkObjectResult(new RequestResultVm(true, Helpers.Serialize(result)));
         }
 
         [HttpPost]

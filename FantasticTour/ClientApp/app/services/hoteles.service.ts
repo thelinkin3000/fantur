@@ -18,7 +18,7 @@ export class HotelesService {
     constructor(private httpClient: HttpClient) {}
 
     url: string = '/api/Hoteles';
-
+    autocompleteUrl:string = '/api/Autocomplete/Hotel';
     public getAll(): Observable<RequestResultVm> {
         return this.httpClient.get<RequestResultVm>(this.url);
     }
@@ -31,6 +31,12 @@ export class HotelesService {
         return this.httpClient
             .post<RequestResultVm>(this.url, hotel, this.httpOptions);
     }
-
+    
+    public autocomplete(query: string) {
+        if (query) {
+            let params: HttpParams = new HttpParams().set('query', query);
+            return this.httpClient.get<RequestResultVm>(this.autocompleteUrl, { params: params });
+        }
+    }
 
 }

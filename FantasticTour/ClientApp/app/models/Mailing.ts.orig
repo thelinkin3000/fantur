@@ -1,0 +1,8 @@
+export class Mailing {
+    titulo: string;
+    cuerpo: string;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9fc81a6dd4fa02726419f59a1e4ae46382a6349a
+}

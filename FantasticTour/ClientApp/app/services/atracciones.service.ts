@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Atraccion } from '../models/Atraccion';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { RequestResultVm } from '../models/RequestResultVm';
 
 @Injectable()
 export class AtraccionesService {
-    constructor(private http: HttpClient) { }
+    constructor(private httpClient: HttpClient) { }
     url : string = 'api/atracciones';
+    autocompleteUrl:string = 'api/autocomplete/atraccion';
     private httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -13,15 +15,20 @@ export class AtraccionesService {
         })
     };
     public getAll() {
-        return this.http.get<Atraccion[]>(this.url);
+        return this.httpClient.get<RequestResultVm>(this.url);
     }
 
     public get(id: string) {
-        return this.http.get<Atraccion>(this.url + '/' + id);
+        return this.httpClient.get<RequestResultVm>(this.url + '/' + id);
     }
 
     public save(atraccion: Atraccion) {
-        return this.http.post<Atraccion>(this.url, atraccion, this.httpOptions);
+        return this.httpClient.post<RequestResultVm>(this.url, atraccion, this.httpOptions);
     }
-
+    public autocomplete(query: string) {
+        if (query) {
+            let params: HttpParams = new HttpParams().set('query', query);
+            return this.httpClient.get<RequestResultVm>(this.autocompleteUrl, { params: params });
+        }
+    }
 }

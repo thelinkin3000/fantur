@@ -39,7 +39,9 @@ export class AtraccionEditorComponent implements OnInit {
         if (this.id != null) {
             this.atraccionesService.get(this.id.toString()).subscribe(result => {
                     console.log(result);
-                    this.atraccion = result;
+                    if (result.valid) {
+                        this.atraccion = JSON.parse(result.message);
+                    }
                 },
                 error => console.error(error));
         } else {

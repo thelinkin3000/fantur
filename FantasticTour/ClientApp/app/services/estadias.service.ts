@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { Estadia } from '../models/Estadia'
+import { RequestResultVm } from '../models/RequestResultVm';
+
 
 @Injectable()
 export class EstadiasService {
@@ -17,12 +19,12 @@ export class EstadiasService {
 
     url: string = '/api/Estadias'
 
-    public getEstadias(): Observable<Estadia[]> {
-        return this.httpClient.get<Estadia[]>(this.url);
+    public getEstadias(): Observable<RequestResultVm> {
+        return this.httpClient.get<RequestResultVm>(this.url);
     }
 
-    public getEstadia(id: string): Observable<Estadia> {
-        return this.httpClient.get<Estadia>(this.url + '/' + id)
+    public getEstadia(id: string): Observable<RequestResultVm> {
+        return this.httpClient.get<RequestResultVm>(this.url + '/' + id)
     }
 
     

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-    private loginVm: LoginVm;
+    loginVm: LoginVm;
     constructor(private userService: UserService, private modalService: NgbModal, private router: Router) { }
 
     ngOnInit() {

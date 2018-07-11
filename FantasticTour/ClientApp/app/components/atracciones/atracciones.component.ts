@@ -18,7 +18,10 @@ export class AtraccionesComponent implements OnInit {
 
     ngOnInit() {
         this.atraccionesService.getAll().subscribe(result => {
-            this.atracciones = result;
+            if (result.valid) {
+                this.atracciones = JSON.parse(result.message);
+            }
+            
         }, error => console.error(error));
     }
 }

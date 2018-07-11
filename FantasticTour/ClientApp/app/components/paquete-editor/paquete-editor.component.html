@@ -1,3 +1,157 @@
-<p>
-  paquete-editor works!
-</p>
+<div class="card">
+    <div class="card-header">
+        <h1 *ngIf="paquete.id">
+            Editando paquete {{paquete.id}}
+        </h1>
+        <h1 *ngIf="!paquete.id">
+            Nuevo paquete
+        </h1>
+    </div>
+    
+    <div class="card-body">
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#general-collapse" aria-expanded="true" aria-controls="collapseOne">
+                            General
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="general-collapse" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label for="Nombre">Nombre</label>
+                            <input id="nombre" [(ngModel)]="nombre" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaVencimiento">Fecha de Vencimiento</label>
+                            <input id="fechaVencimiento" [(ngModel)]="fechaVencimiento" type="date" class="form-control">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#transporte-collapse" aria-expanded="true" aria-controls="collapseOne">
+                            Transporte
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="transporte-collapse" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label for="origenTransporte">Origen</label>
+                            <input id="origenTransporte" type="text" class="form-control" [formControl]="origenTransporteSearchTerm">
+                            <div *ngIf="(origenTransporteSubject | async)">
+                                <div class="list-group list-group-flush">
+                                    <a class="list-group-item list-group-item-action" *ngFor="let item of (origenTransporteSubject | async)" (click)="select(item, origenTransporteSearchTerm, origenTransporteSubject, setTransporteOrigen, transporte)">
+                                        {{item.text}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="destinoTransporte">Destino</label>
+                            <input id="destinoTransporte" type="text" class="form-control" [formControl]="destinoTransporteSearchTerm">
+                            <div *ngIf="(destinoTransporteSubject | async)">
+                                <div class="list-group list-group-flush">
+                                    <a class="list-group-item list-group-item-action" *ngFor="let item of (destinoTransporteSubject | async)" (click)="select(item, destinoTransporteSearchTerm, destinoTransporteSubject, setTransporteDestino, transporte)">
+                                        {{item.text}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="idaTransporte">Fecha de Partida</label>
+                            <input id="idaTransporte" [(ngModel)]="transporte.fechaIda" type="date" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="vueltaTransporte">Fecha de Regreso</label>
+                            <input id="vueltaTransporte" [(ngModel)]="transporte.fechaVuelta" type="date" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="costoTransporte">Costo</label>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">$</div>
+                                <input id="costoTransporte" [(ngModel)]="transporte.costo" type="number" class="form-control" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#estadia-collapse" aria-expanded="false" aria-controls="collapseTwo">
+                            Estadia
+                        </button>
+                    </h5>
+                </div>
+                <div id="estadia-collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="hotel">Destino</label>
+                            <input id="hotel" type="text" class="form-control" [formControl]="hotelSearchTerm">
+                            <div *ngIf="(hotelSubject | async)">
+                                <div class="list-group list-group-flush">
+                                    <a class="list-group-item list-group-item-action" *ngFor="let item of (hotelSubject | async)" (click)="select(item, hotelSearchTerm, hotelSubject, setHotel, estadia)">
+                                        {{item.text}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaInicioHotel">Fecha de Ingreso</label>
+                            <input id="fechaInicioHotel" [(ngModel)]="estadia.fechaInicio" placeholder="Direccion" type="date" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaFinHotel">Fecha de Egreso</label>
+                            <input id="fechaFinHotel" [(ngModel)]="estadia.fechaFin" placeholder="Telefono" type="date" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="costoEstadia">Costo</label>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">$</div>
+                                <input id="costoEstadia" [(ngModel)]="estadia.costo" type="number" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#atraccion-collapse" aria-expanded="false" aria-controls="collapseThree">
+                            Atraccion
+                        </button>
+                    </h5>
+                </div>
+                <div id="atraccion-collapse" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="atraccion">Atraccion</label>
+                            <input id="atraccion" type="text" class="form-control" [formControl]="atraccionSearchTerm">
+                            <div *ngIf="(atraccionSubject | async)">
+                                <div class="list-group list-group-flush">
+                                    <a class="list-group-item list-group-item-action" *ngFor="let item of (atraccionSubject | async)" (click)="select(item, atraccionSearchTerm, atraccionSubject, setAtraccion, paquete)">
+                                        {{item.text}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" (click)="save()">Crear Paquete</button>
+    </div>
+</div>

@@ -1,37 +1,39 @@
+<!--
 <div class="card">
-  <div class="card-header">
-      <h1 *ngIf="estadia.id">
-          Editando estadía {{ estadia.id }}
-      </h1>
-      <h1 *ngIf="!estadia.id">
-          Nueva estadía
-      </h1>
-  </div>
-  <div class="card-body">
-      <div class="form-group">
-          <label for="fechaInicio">Fecha Inicio</label>
-          <input id="fechaInicio" [(ngModel)]="estadia.fechaInicio" placeholder="Fecha" type="date" class="form-control" />
-      </div>
-      <div class="form-group">
-          <label for="fechaFin">Fecha Fin</label>
-          <input id="fechaFin" [(ngModel)]="estadia.fechaFin" placeholder="Fecha" type="date" class="form-control" />
-      </div>
-      <div class="form-group">
-          <label for="costo">Costo</label>
-          <div class="input-group">
-              <div class="input-prepend">
-                  <div class="input-group-text">$</div>
-              </div>
-              <input id="costo" [(ngModel)]="estadia.costo" placeholder="Costo" type="text" class="form-control" />
-          </div>
-      </div>
-      <div class="form-group">
-          <label for="hotel">Hotel</label>
-          <input id="hotel" [(ngModel)]="estadia.hotel" placeholder="Hotel" type="text" class="form-control" />
-      </div>
+    <div class="card-header">
+        <h1 *ngIf="estadia.id">
+            Editando estadía {{ estadia.id }}
+        </h1>
+        <h1 *ngIf="!estadia.id">
+            Nueva estadía
+        </h1>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="fechaInicio">Fecha Inicio</label>
+            <input id="fechaInicio" [(ngModel)]="estadia.fechaInicio" placeholder="Fecha" type="date" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="fechaFin">Fecha Fin</label>
+            <input id="fechaFin" [(ngModel)]="estadia.fechaFin" placeholder="Fecha" type="date" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="costo">Costo</label>
+            <div class="input-group">
+                <div class="input-prepend">
+                    <div class="input-group-text">$</div>
+                </div>
+                <input id="costo" [(ngModel)]="estadia.costo" placeholder="Costo" type="text" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="hotel">Hotel</label>
+            <input id="hotel" [(ngModel)]="estadia.hotel" placeholder="Hotel" type="text" class="form-control" />
+        </div>
      
-  </div>
+    </div>
 
-  <button type="button" class="btn btn-primary" (click)="save()">Guardar</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Guardar</button>
 
 </div>
+    -->

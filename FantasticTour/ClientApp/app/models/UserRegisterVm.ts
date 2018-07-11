@@ -4,7 +4,7 @@
     passwordAgain: string;
     nombre: string;
     fechaNacimiento: string;
-    numeroDocument: string;
+    numeroDocumento: string;
     sexo: string;
     telefono: string;
 }

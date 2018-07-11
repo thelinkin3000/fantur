@@ -5,5 +5,7 @@ export class Estadia {
     fechaInicio: string;
     fechaFin: string;
     costo: number;
-    hotel: Hotel;
+    hotelId: number;
+    hotel: string;
+    ciudad: string;
 }

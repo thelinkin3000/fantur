@@ -114,6 +114,8 @@ namespace FantasticTour.Migrations
 
                     b.Property<int?>("AtraccionId");
 
+                    b.Property<decimal>("Costo");
+
                     b.Property<bool>("Disponible");
 
                     b.Property<int?>("EstadiaId");
@@ -164,7 +166,9 @@ namespace FantasticTour.Migrations
 
                     b.Property<int?>("DestinoId");
 
-                    b.Property<DateTime>("Fecha");
+                    b.Property<DateTime>("FechaIda");
+
+                    b.Property<DateTime>("FechaVuelta");
 
                     b.Property<int?>("OrigenId");
 

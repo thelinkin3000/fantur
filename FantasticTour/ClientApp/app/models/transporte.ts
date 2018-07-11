@@ -2,9 +2,11 @@ import { Ciudad } from './ciudad';
 
 export class Transporte {
     id: number;
-    fecha: string;
+    fechaIda: string;
+    fechaVuelta: string;
     costo: number;
-    origen: Ciudad;
-    destino: Ciudad;
-    tipo: String;
+    origenId: number;
+    destinoId: number;
+    tipoTransporte: string;
+    tipoTransporteId: number;
 }

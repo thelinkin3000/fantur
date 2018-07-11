@@ -39,7 +39,9 @@ export class EstadiaEditorComponent implements OnInit {
         if (this.id != null) {
             this.estadiasService.getEstadia(this.id.toString()).subscribe(result => {
                     console.log(result);
-                    this.estadia = result;
+                if (result.valid) {
+                    this.estadia = JSON.parse(result.message);
+                }
                 },
                 error => console.error(error));
         } else {

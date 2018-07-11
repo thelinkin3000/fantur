@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+
 
 module.exports = (env) => {
     // Configuration in common to both client-side and server-side bundles
@@ -25,12 +27,17 @@ module.exports = (env) => {
         },
         plugins: [new CheckerPlugin()]
     };
-
+    let optimization = {
+        minimizer: [
+            new UglifyJsPlugin()
+        ]
+    };
     // Configuration for client-side bundle suitable for running in browsers
-    const clientBundleOutputDir = './wwwroot/dist';
-    const clientBundleConfig = merge(sharedConfig, {
-        entry: { 'main-client': './ClientApp/boot.browser.ts' },
-        output: { path: path.join(__dirname, clientBundleOutputDir) },
+    const clientBundleOutputDir = './wwwroot/dist';    
+        const clientBundleConfig = merge(sharedConfig, {
+            entry: { 'main-client': './ClientApp/boot.browser.ts' },
+            output: { path: path.join(__dirname, clientBundleOutputDir) },
+            
         plugins: [
             new webpack.DllReferencePlugin({
                 context: __dirname,
@@ -44,7 +51,6 @@ module.exports = (env) => {
             })
         ] : [
             // Plugins that apply in production builds only
-            new webpack.optimize.UglifyJsPlugin(),
             new AngularCompilerPlugin({
                 tsConfigPath: './tsconfig.json',
                 entryModule: path.join(__dirname, 'ClientApp/app/app.browser.module#AppModule'),

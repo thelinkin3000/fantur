@@ -30,6 +30,7 @@ export class RegisterUserComponent implements OnInit {
               console.error(error);
           });
   }
+
     displayError(content: string, title: string) {
         console.log(content);
         const modalReference = this.modalService.open(ErrorModalComponent);

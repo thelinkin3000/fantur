@@ -23,7 +23,9 @@ export class TransportesComponent implements OnInit {
     getTransporte() {
         this.transportesService.getAll().subscribe(result => {
             console.log(result);
-            this.transportes = result;
+            if (result.valid) {
+                this.transportes = JSON.parse(result.message);
+            }
         }, error => console.error(error));
     }
 

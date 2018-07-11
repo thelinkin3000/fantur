@@ -5,5 +5,5 @@ export class Atraccion {
     costo: number;
     fecha: string;
     nombre: string;
-    ciudad: Ciudad;
+    ciudadId: number;
 }

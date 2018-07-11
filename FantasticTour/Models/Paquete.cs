@@ -14,5 +14,6 @@ namespace FantasticTour.Models
         public Transporte Transporte { get; set; }
         public Estadia Estadia { get; set; }
         public Atraccion Atraccion { get; set; }
+        public decimal Costo { get; set; }
     }
 }

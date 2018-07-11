@@ -10,7 +10,8 @@ namespace FantasticTour.Models
     public class Transporte
     {
         public int Id { get; set; }
-        public DateTime Fecha { get; set; }
+        public DateTime FechaIda { get; set; }
+        public DateTime FechaVuelta { get; set; }
         public Decimal Costo { get; set; }
         public Ciudad Origen { get; set; }
         public Ciudad Destino { get; set; }

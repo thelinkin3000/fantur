@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FantasticTour.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180621123733_TrigramIndexes")]
+    [Migration("20180708213756_TrigramIndexes")]
     partial class TrigramIndexes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

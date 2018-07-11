@@ -12,9 +12,10 @@ namespace FantasticTour
                 value,
             new JsonSerializerSettings
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                DateFormatString = "dd/MM/yyyy",
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
-
         }
     }
 }

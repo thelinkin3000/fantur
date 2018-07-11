@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Enviar publicidad a clientes</h2>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="titulo">Titulo del mail</label>
+<<<<<<< HEAD
+            <input id="titulo" type="text" class="form-control" [(ngModel)]="mailing.titulo" />
+=======
+            <input id="titulo" type="text" class="form-control" [(ngModel)]="mailing.titulo"/>
+>>>>>>> 9fc81a6dd4fa02726419f59a1e4ae46382a6349a
+        </div>
+        <div class="form-group">
+            <label for="cuerpo">Cuerpo del mail</label>
+            <textarea id="cuerpo" class="form-control" [(ngModel)]="mailing.cuerpo"></textarea>
+        </div>
+        <div class="text-right">
+            <button class="btn btn-primary" (click)="send()">
+                Enviar
+            </button>
+        </div>
+    </div>
+</div>

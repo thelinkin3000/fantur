@@ -68,12 +68,11 @@ export class HotelEditorComponent implements OnInit {
                                 if (result.valid) {
                                     let ciudad = JSON.parse(result.message);
                                     this.searchTerm.setValue(ciudad.nombre, { emitEvent: false });
-                                }
-                                    
+                                }               
                             });
                         }
                     } else {
-                        this.displayError("Ocurrió un error", "Whoops");
+                        this.displayError("OcurriÃ³ un error", "Whoops");
                     }
                 },
                 error => this.displayError(error, "Whoops"));
@@ -105,7 +104,7 @@ export class HotelEditorComponent implements OnInit {
         if (query) {
             this.ciudadesService.autocomplete(query).subscribe(result => {
                 if (!result) {
-                    console.error("No se recibió ningun resultado");
+                    console.error("No se recibiÃ³ ningun resultado");
                     return null;
                 }
                 if (!result.valid) {
