@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import 'zone.js';
-import 'rxjs/add/operator/first';
+//import 'rxjs/add/operator/first';
 import { first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { APP_BASE_HREF } from '@angular/common';

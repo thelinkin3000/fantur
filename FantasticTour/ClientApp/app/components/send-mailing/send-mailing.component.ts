@@ -19,7 +19,8 @@ export class SendMailingComponent implements OnInit {
     constructor(private mailingService: MailingService,
         private modalService: NgbModal,
         private router: Router) { }
-    mailing:Mailing;
+    
+    public mailing:Mailing;
 
     ngOnInit() {
         this.mailing = new Mailing();
